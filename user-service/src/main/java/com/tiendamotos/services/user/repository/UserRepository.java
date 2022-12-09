@@ -1,8 +1,10 @@
 package com.tiendamotos.services.user.repository;
 
+import com.tiendamotos.services.user.model.BikeModel;
 import com.tiendamotos.services.user.model.UserModel;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository {
 
@@ -17,5 +19,6 @@ public interface UserRepository {
     UserModel findByEmail (String email);
 
     void deleteById (Long id);
+
 
 }

@@ -12,12 +12,13 @@ import java.util.List;
 @Repository
 public class JdbcBikeRepository implements BikeRepository {
 
-     String sqlSave ="INSERT INTO bikes (manufacturer, prize, horsepower) VALUES (?, ?, ?)";
+     String sqlSave ="INSERT INTO bikes (manufacturer, prize, horsepower, userId) VALUES (?, ?, ?, ?)";
      String sqlUpdate ="UPDATE bikes SET manufacturer = ?, prize = ?, horsepower = ? WHERE id = ?";
      String findById = "SELECT * FROM bikes WHERE id=?";
      String deleteById = "DELETE FROM bikes WHERE id=?";
      String findAll = "SELECT * FROM bikes";
      String findAllByPrize = "SELECT * FROM bikes WHERE prize=?";
+     String findByUser = "SELECT * FROM bikes WHERE userId=?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -66,5 +67,11 @@ public class JdbcBikeRepository implements BikeRepository {
         return jdbcTemplate.query(findAllByPrize, BeanPropertyRowMapper.newInstance(BikeModel.class)
         ,prize);
 
+    }
+
+    @Override
+    public List<BikeModel> findByUser(Long userId) {
+        return jdbcTemplate.query(findByUser,BeanPropertyRowMapper.newInstance(BikeModel.class)
+        ,userId);
     }
 }

@@ -20,4 +20,6 @@ public interface BikeRepository {
     List<BikeModel> findByManufacturer(String manufacturer);
 
     List<BikeModel> findByPrize (BigDecimal prize);
+
+    List<BikeModel> findByUser (Long userId);
 }

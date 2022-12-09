@@ -1,10 +1,13 @@
 package com.tiendamotos.services.user.repository;
 
+import com.tiendamotos.services.user.client.BikeFeignClient;
+import com.tiendamotos.services.user.model.BikeModel;
 import com.tiendamotos.services.user.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 
@@ -21,6 +24,11 @@ public class JdbcRepository implements UserRepository{
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private BikeFeignClient client;
+
+
 
     @Override
     public int save (UserModel user) {
@@ -51,5 +59,13 @@ public class JdbcRepository implements UserRepository{
     @Override
     public void deleteById(Long id) {
         jdbcTemplate.update(deleteById,id);
+    }
+
+
+    public BikeModel saveBike(Long userId,BikeModel bike){
+
+        bike.setUserId(userId);
+        BikeModel bikeNew = client.save(bike);
+        return bikeNew;
     }
 }

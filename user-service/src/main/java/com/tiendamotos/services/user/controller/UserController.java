@@ -1,6 +1,9 @@
 package com.tiendamotos.services.user.controller;
 
+import com.tiendamotos.services.user.client.BikeFeignClient;
+import com.tiendamotos.services.user.model.BikeModel;
 import com.tiendamotos.services.user.model.UserModel;
+import com.tiendamotos.services.user.repository.JdbcRepository;
 import com.tiendamotos.services.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,11 +12,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/user")
 @RestController
 public class UserController {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private JdbcRepository jdbcRepository;
+
 
     @GetMapping("/findAllUsers")
     public ResponseEntity<List<UserModel>> findAll (){
@@ -88,6 +96,13 @@ public class UserController {
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/savebike/{userId}")
+    public ResponseEntity<BikeModel> saveBike (@PathVariable Long userId, @RequestBody BikeModel bike){
+
+        BikeModel bikeNew = jdbcRepository.saveBike(userId,bike);
+        return ResponseEntity.ok(bikeNew);
     }
 
 

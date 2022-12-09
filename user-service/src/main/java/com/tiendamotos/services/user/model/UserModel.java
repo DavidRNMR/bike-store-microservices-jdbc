@@ -14,5 +14,6 @@ public class UserModel {
     private Long id;
     private String name;
     private String email;
+    private List<BikeModel> bikes;
 
 }
