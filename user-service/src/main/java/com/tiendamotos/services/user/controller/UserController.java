@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/user")
+
 @RestController
 public class UserController {
 
     @Autowired
     private UserRepository repository;
-
-    @Autowired
-    private JdbcRepository jdbcRepository;
 
 
     @GetMapping("/findAllUsers")
@@ -98,12 +95,16 @@ public class UserController {
         }
     }
 
-    @PostMapping("/savebike/{userId}")
-    public ResponseEntity<BikeModel> saveBike (@PathVariable Long userId, @RequestBody BikeModel bike){
+    @GetMapping("/getUser/{userId}")
+    public ResponseEntity<?> getUser (@PathVariable Long userId){
 
-        BikeModel bikeNew = jdbcRepository.saveBike(userId,bike);
-        return ResponseEntity.ok(bikeNew);
+        BikeModel bike = repository.findByUserId(userId);
+
+        if(bike!=null){
+            return new ResponseEntity<>(bike,HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
-
-
 }

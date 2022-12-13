@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@RequestMapping("/bike")
+
 @RestController
 public class BikeController {
 
@@ -43,7 +43,7 @@ public class BikeController {
         }
     }
 
-    @PostMapping()
+    @PostMapping("/addBike")
     public ResponseEntity<?> addBike(@RequestBody BikeModel bike){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(bike));
@@ -129,8 +129,20 @@ public class BikeController {
         }
         return new ResponseEntity<>(bikes, HttpStatus.OK);
     }
+    
+    @GetMapping("/findByUserId/{userId}")
+    public ResponseEntity<BikeModel> findByUserId (@PathVariable Long userId){
 
+        BikeModel bike = repository.findByUserId(userId);
+
+        if(bike!=null){
+            return new ResponseEntity<>(bike,HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
+}
 
 
 

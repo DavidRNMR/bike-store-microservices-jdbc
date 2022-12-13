@@ -22,4 +22,6 @@ public interface BikeRepository {
     List<BikeModel> findByPrize (BigDecimal prize);
 
     List<BikeModel> findByUser (Long userId);
+
+    BikeModel findByUserId (Long userId);
 }

@@ -19,6 +19,7 @@ public class JdbcBikeRepository implements BikeRepository {
      String findAll = "SELECT * FROM bikes";
      String findAllByPrize = "SELECT * FROM bikes WHERE prize=?";
      String findByUser = "SELECT * FROM bikes WHERE userId=?";
+     String sqlUserId = "SELECT * FROM bikes WHERE userId = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,13 +29,13 @@ public class JdbcBikeRepository implements BikeRepository {
     public int save(BikeModel bike) {
 
         return jdbcTemplate.update(sqlSave, bike.getManufacturer(),bike.getPrize(),
-                bike.getHorsePower());
+                bike.getHorsePower(), bike.getUserId());
     }
 
     @Override
     public void update(BikeModel bike) {
         jdbcTemplate.update(sqlUpdate, bike.getManufacturer(), bike.getPrize(),
-                bike.getHorsePower(), bike.getId());
+                bike.getHorsePower());
 
     }
 
@@ -73,5 +74,10 @@ public class JdbcBikeRepository implements BikeRepository {
     public List<BikeModel> findByUser(Long userId) {
         return jdbcTemplate.query(findByUser,BeanPropertyRowMapper.newInstance(BikeModel.class)
         ,userId);
+    }
+
+    @Override
+    public BikeModel findByUserId(Long userId) {
+        return jdbcTemplate.queryForObject(sqlUserId,new BeanPropertyRowMapper<BikeModel>(BikeModel.class),userId);
     }
 }

@@ -21,13 +21,12 @@ public class JdbcRepository implements UserRepository{
     String sqlUpdate ="UPDATE users SET name = ?, email = ? WHERE id = ?";
     String sqlEmail ="SELECT * FROM users WHERE email = ?";
 
-
+    String sqlUserId = "SELECT * FROM bikes WHERE userId = ?";
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private BikeFeignClient client;
-
 
 
     @Override
@@ -61,11 +60,9 @@ public class JdbcRepository implements UserRepository{
         jdbcTemplate.update(deleteById,id);
     }
 
-
-    public BikeModel saveBike(Long userId,BikeModel bike){
-
-        bike.setUserId(userId);
-        BikeModel bikeNew = client.save(bike);
-        return bikeNew;
+    @Override
+    public BikeModel findByUserId(Long userId) {
+        return client.findByUserId(userId);
     }
+
 }

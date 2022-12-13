@@ -20,5 +20,7 @@ public interface UserRepository {
 
     void deleteById (Long id);
 
+    BikeModel findByUserId (Long userId);
+
 
 }
