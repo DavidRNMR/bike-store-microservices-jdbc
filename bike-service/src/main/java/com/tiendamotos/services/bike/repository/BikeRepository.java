@@ -24,4 +24,5 @@ public interface BikeRepository {
     List<BikeModel> findByUser (Long userId);
 
     BikeModel findByUserId (Long userId);
+
 }

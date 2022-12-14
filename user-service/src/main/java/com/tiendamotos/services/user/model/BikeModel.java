@@ -15,4 +15,8 @@ public class BikeModel {
     private BigDecimal prize;
     private Integer horsePower;
     private Long userId;
+
+    public BikeModel (Long userId){
+        this.userId=userId;
+    }
 }

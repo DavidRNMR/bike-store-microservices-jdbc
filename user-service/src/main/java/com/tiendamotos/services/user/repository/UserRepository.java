@@ -22,5 +22,8 @@ public interface UserRepository {
 
     BikeModel findByUserId (Long userId);
 
+    BikeModel saveBike (BikeModel bike,Long userId);
+
+    List<BikeModel> findAllByUser (Long userId);
 
 }

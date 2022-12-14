@@ -1,9 +1,7 @@
 package com.tiendamotos.services.user.controller;
 
-import com.tiendamotos.services.user.client.BikeFeignClient;
 import com.tiendamotos.services.user.model.BikeModel;
 import com.tiendamotos.services.user.model.UserModel;
-import com.tiendamotos.services.user.repository.JdbcRepository;
 import com.tiendamotos.services.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -105,6 +103,25 @@ public class UserController {
         }
         else{
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @PostMapping("/saveBike/{userId}")
+    ResponseEntity<BikeModel> saveBike (@PathVariable Long userId, @RequestBody BikeModel bike){
+
+        return  ResponseEntity.status(HttpStatus.CREATED).body(repository.saveBike(bike,userId));
+
+    }
+    @GetMapping("/findAllBikes/{userId}")
+    public ResponseEntity <List<BikeModel>> findAllBikes (@PathVariable Long userId){
+
+        List<BikeModel> bikes = repository.findAllByUser(userId);
+
+        if(bikes.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            return new ResponseEntity<>(bikes, HttpStatus.OK);
         }
     }
 }

@@ -21,7 +21,6 @@ public class JdbcRepository implements UserRepository{
     String sqlUpdate ="UPDATE users SET name = ?, email = ? WHERE id = ?";
     String sqlEmail ="SELECT * FROM users WHERE email = ?";
 
-    String sqlUserId = "SELECT * FROM bikes WHERE userId = ?";
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -63,6 +62,19 @@ public class JdbcRepository implements UserRepository{
     @Override
     public BikeModel findByUserId(Long userId) {
         return client.findByUserId(userId);
+    }
+
+    @Override
+    public BikeModel saveBike(BikeModel bike, Long userId) {
+
+        bike.setUserId(userId);
+
+        return client.saveBike(bike);
+    }
+
+    @Override
+    public List<BikeModel> findAllByUser(Long userId) {
+        return client.findAllByUser(userId);
     }
 
 }
