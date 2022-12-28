@@ -59,10 +59,10 @@ public class HelmetController {
         return new ResponseEntity<>(helmet, HttpStatus.CREATED);
     }
 
-    @GetMapping("/findByUser/{userHelmet}")
-    public ResponseEntity<HelmetModel> findByUser(@PathVariable Long userHelmet){
+    @GetMapping("/findByUser/{userId}")
+    public ResponseEntity<HelmetModel> findByUser(@PathVariable Long userId){
 
-        HelmetModel helmetModel = repository.findByUser(userHelmet);
+        HelmetModel helmetModel = repository.findByUser(userId);
 
         if(helmetModel!=null){
 

@@ -123,10 +123,10 @@ public class UserController {
             return new ResponseEntity<>(bikes, HttpStatus.OK);
         }
     }
-    @GetMapping("/findOneHelmetet/{id}")
-    public ResponseEntity<HelmetModel> findOneHelmet (@PathVariable Long id){
+    @GetMapping("/findOneHelmet/{userId}")
+    public ResponseEntity<HelmetModel> findOneHelmet (@PathVariable Long userId){
 
-        HelmetModel helmet = repository.findByUser(id);
+        HelmetModel helmet = repository.findByUser(userId);
 
         if(helmet!=null){
             return new ResponseEntity<>(helmet, HttpStatus.OK);
@@ -134,9 +134,9 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/addHelmet/{userHelmet}")
-    public ResponseEntity<HelmetModel> addHelmet (@RequestBody HelmetModel helmet, @PathVariable Long userHelmet){
+    @PostMapping("/addHelmet/{userId}")
+    public ResponseEntity<HelmetModel> addHelmet (@RequestBody HelmetModel helmet, @PathVariable Long userId){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.addOne(helmet,userHelmet));
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.addOne(helmet,userId));
     }
 }

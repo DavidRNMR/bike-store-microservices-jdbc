@@ -85,14 +85,14 @@ public class JdbcRepository implements UserRepository{
     }
 
     @Override
-    public HelmetModel findByUser(Long userHelmet) {
-        return helmetFeignClient.findByUser(userHelmet);
+    public HelmetModel findByUser(Long userId) {
+        return helmetFeignClient.findByUser(userId);
     }
 
     @Override
-    public HelmetModel addOne(HelmetModel helmet, Long userHelmet) {
+    public HelmetModel addOne(HelmetModel helmet, Long userId) {
 
-        helmet.setUserHelmet(userHelmet);
+        helmet.setUserId(userId);
         return helmetFeignClient.addOne(helmet);
     }
 

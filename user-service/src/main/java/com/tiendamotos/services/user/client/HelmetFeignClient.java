@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "helmet-service")
 public interface HelmetFeignClient {
 
-    @GetMapping("/findByUser/{userHelmet}")
-    HelmetModel findByUser(@PathVariable Long userHelmet);
+    @GetMapping("/findByUser/{userId}")
+    HelmetModel findByUser(@PathVariable Long userId);
 
     @PostMapping("/addHelmet")
     HelmetModel addOne (@RequestBody HelmetModel helmet);

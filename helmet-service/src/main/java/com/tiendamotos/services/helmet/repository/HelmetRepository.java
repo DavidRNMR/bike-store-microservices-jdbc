@@ -8,10 +8,10 @@ public interface HelmetRepository {
 
     int save (HelmetModel helmet);
     List<HelmetModel> findAll();
-    HelmetModel findOne (Long id);
+    HelmetModel findOne (Long userId);
     List<HelmetModel>findAllByBrand(String brand);
-    HelmetModel findByUser (Long userHelmet);
-    void deleteById(Long id);
+    HelmetModel findByUser (Long userId);
+    void deleteById(Long userId);
 
 
 }

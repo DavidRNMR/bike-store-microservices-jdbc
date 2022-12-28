@@ -12,10 +12,10 @@ import java.util.List;
 public class HelmetService implements HelmetRepository {
 
     String findAll ="SELECT * FROM helmets";
-    String save = "INSERT INTO helmets (brand, size) VALUES (?, ?)";
+    String save = "INSERT INTO helmets (brand, size, userId) VALUES (?, ?, ?)";
     String findOne = "SELECT * FROM helmets WHERE id = ?";
     String findAllByBrand = "SELECT * FROM helmets WHERE brand = ?";
-    String findByUser = "SELECT * FROM helmets WHERE userHelmet = ?";
+    String findByUser = "SELECT * FROM helmets WHERE userId = ?";
     String delete = "DELETE FROM helmets WHERE id = ?";
 
     @Autowired
@@ -24,7 +24,7 @@ public class HelmetService implements HelmetRepository {
 
     @Override
     public int save(HelmetModel helmet) {
-        return jdbcTemplate.update(save,helmet.getBrand(),helmet.getSize());
+        return jdbcTemplate.update(save,helmet.getBrand(),helmet.getSize(), helmet.getUserId());
     }
 
     @Override

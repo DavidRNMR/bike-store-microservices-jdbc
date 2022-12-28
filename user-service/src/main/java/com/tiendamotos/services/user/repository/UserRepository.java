@@ -26,8 +26,8 @@ public interface UserRepository {
 
     List<BikeModel> findAllByUser (Long userId);
 
-    HelmetModel findByUser (Long userHelmet);
+    HelmetModel findByUser (Long userId);
 
-    HelmetModel addOne (HelmetModel helmet, Long userHelmet);
+    HelmetModel addOne (HelmetModel helmet, Long userId);
 
 }

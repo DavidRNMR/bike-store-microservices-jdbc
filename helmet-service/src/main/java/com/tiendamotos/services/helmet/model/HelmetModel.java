@@ -12,7 +12,7 @@ public class HelmetModel {
     private Long id;
     private String brand;
     private String size;
-    private Long userHelmet;
-
+    private Long userId;
 
 }
+
