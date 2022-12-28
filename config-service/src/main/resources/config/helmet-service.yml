@@ -11,7 +11,7 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 
 springdoc:
-  packagesToScan: com.tiendamotos.services.user
+  packagesToScan: com.tiendamotos.services.helmet
 
 spring:
   application:

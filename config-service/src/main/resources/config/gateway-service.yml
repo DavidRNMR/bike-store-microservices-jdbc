@@ -29,10 +29,10 @@ spring:
             - Path=/user/**
           filters:
             - RewritePath=/user/(?<path>.*), /$\{path}
-        - id: organization-service
-          uri: lb://organization-service
+        - id: helmet-service
+          uri: lb://helmet-service
           predicates:
-            - Path=/organization/**
+            - Path=/helmet/**
           filters:
             - RewritePath=/organization/(?<path>.*), /$\{path}
         - id: openapi

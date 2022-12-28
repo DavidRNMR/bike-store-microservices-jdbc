@@ -1,10 +1,10 @@
 package com.tiendamotos.services.user.repository;
 
 import com.tiendamotos.services.user.model.BikeModel;
+import com.tiendamotos.services.user.model.HelmetModel;
 import com.tiendamotos.services.user.model.UserModel;
-
 import java.util.List;
-import java.util.Optional;
+
 
 public interface UserRepository {
 
@@ -25,5 +25,9 @@ public interface UserRepository {
     BikeModel saveBike (BikeModel bike,Long userId);
 
     List<BikeModel> findAllByUser (Long userId);
+
+    HelmetModel findByUser (Long userHelmet);
+
+    HelmetModel addOne (HelmetModel helmet, Long userHelmet);
 
 }

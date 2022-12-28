@@ -12,3 +12,7 @@ logging:
 
 springdoc:
   packagesToScan: com.tiendamotos.services.bike
+
+spring:
+  application:
+    zipkin: http://localhost:9411

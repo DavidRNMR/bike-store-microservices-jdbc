@@ -21,6 +21,7 @@
     <module>gateway-service</module>
     <module>bike-service</module>
     <module>user-service</module>
+    <module>helmet-service</module>
 
 </modules>
 

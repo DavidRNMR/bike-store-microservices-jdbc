@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserModel {
+public class HelmetModel {
 
     private Long id;
-    private String name;
-    private String email;
-    private List<BikeModel> bikes;
-    private HelmetModel helmetModel;
+    private String brand;
+    private String size;
+    private Long userHelmet;
 
+    public HelmetModel( Long userHelmet){
+        this.userHelmet = userHelmet;
+    }
 }

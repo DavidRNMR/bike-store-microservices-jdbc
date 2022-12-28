@@ -1,7 +1,9 @@
 package com.tiendamotos.services.user.repository;
 
 import com.tiendamotos.services.user.client.BikeFeignClient;
+import com.tiendamotos.services.user.client.HelmetFeignClient;
 import com.tiendamotos.services.user.model.BikeModel;
+import com.tiendamotos.services.user.model.HelmetModel;
 import com.tiendamotos.services.user.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,11 +23,16 @@ public class JdbcRepository implements UserRepository{
     String sqlUpdate ="UPDATE users SET name = ?, email = ? WHERE id = ?";
     String sqlEmail ="SELECT * FROM users WHERE email = ?";
 
+
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private BikeFeignClient client;
+
+    @Autowired
+    private HelmetFeignClient helmetFeignClient;
 
 
     @Override
@@ -75,6 +82,18 @@ public class JdbcRepository implements UserRepository{
     @Override
     public List<BikeModel> findAllByUser(Long userId) {
         return client.findAllByUser(userId);
+    }
+
+    @Override
+    public HelmetModel findByUser(Long userHelmet) {
+        return helmetFeignClient.findByUser(userHelmet);
+    }
+
+    @Override
+    public HelmetModel addOne(HelmetModel helmet, Long userHelmet) {
+
+        helmet.setUserHelmet(userHelmet);
+        return helmetFeignClient.addOne(helmet);
     }
 
 }

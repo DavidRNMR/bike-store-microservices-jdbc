@@ -1,6 +1,7 @@
 package com.tiendamotos.services.user.controller;
 
 import com.tiendamotos.services.user.model.BikeModel;
+import com.tiendamotos.services.user.model.HelmetModel;
 import com.tiendamotos.services.user.model.UserModel;
 import com.tiendamotos.services.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,7 @@ public class UserController {
 
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        else{
             return new ResponseEntity<>(users,HttpStatus.OK);
-        }
     }
 
     @GetMapping("/findOneUser/{id}")
@@ -123,5 +122,21 @@ public class UserController {
         else{
             return new ResponseEntity<>(bikes, HttpStatus.OK);
         }
+    }
+    @GetMapping("/findOneHelmetet/{id}")
+    public ResponseEntity<HelmetModel> findOneHelmet (@PathVariable Long id){
+
+        HelmetModel helmet = repository.findByUser(id);
+
+        if(helmet!=null){
+            return new ResponseEntity<>(helmet, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/addHelmet/{userHelmet}")
+    public ResponseEntity<HelmetModel> addHelmet (@RequestBody HelmetModel helmet, @PathVariable Long userHelmet){
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.addOne(helmet,userHelmet));
     }
 }

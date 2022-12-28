@@ -1,14 +1,14 @@
-package com.tiendamotos.services.user;
+package com.tiendamotos.services.helmet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients
 @SpringBootApplication
+@EnableFeignClients
+public class HelmetApplicaton {
 
-public class UserApplication {
-
-    public static void main(String[] args) {SpringApplication.run(UserApplication.class, args);
+    public static void main (String [] args){
+        SpringApplication.run(HelmetApplicaton.class, args);
     }
 }
