@@ -30,4 +30,6 @@ public interface UserRepository {
 
     HelmetModel addOne (HelmetModel helmet, Long userId);
 
+    UserModel findEverythingByUser(Long id, Long userId);
+
 }

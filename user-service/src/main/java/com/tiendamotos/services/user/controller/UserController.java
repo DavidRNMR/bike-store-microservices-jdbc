@@ -139,4 +139,11 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.addOne(helmet,userId));
     }
+
+    @GetMapping("/findAllByUser/{id}/{userId}")
+    public ResponseEntity<UserModel> findAllByUser (@PathVariable Long id, @PathVariable Long userId){
+
+        UserModel userModel = repository.findEverythingByUser(id,userId);
+        return new ResponseEntity<>(userModel,HttpStatus.OK);
+    }
 }

@@ -96,4 +96,17 @@ public class JdbcRepository implements UserRepository{
         return helmetFeignClient.addOne(helmet);
     }
 
+    @Override
+    public UserModel findEverythingByUser(Long id,Long userId) {
+
+        UserModel user = jdbcTemplate.queryForObject(findById, new BeanPropertyRowMapper<UserModel>(UserModel.class),id);
+
+        if (user!=null) {
+            user.setBikes(client.findAllByUser(userId));
+            user.setHelmetModel(helmetFeignClient.findByUser(userId));
+            return user;
+        }
+        return null;
+    }
+
 }
